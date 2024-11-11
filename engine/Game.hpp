@@ -2,24 +2,28 @@
 #define GAME_HPP
 
 #include <string>
+#include <optional>
 
-namespace rayengine2d {
+namespace engine2d {
 
 class Game {
-protected:
-    std::string windowTitle;
-    int windowWidth;
-    int windowHeight;
-    int targetFps;
-    int frameCounter;
-    virtual void frameCode() = 0;
-    virtual void drawFrame() = 0;
+    protected:
+        std::string windowTitle;
+        int windowWidth;
+        int windowHeight;
+        int targetFps;
+        std::optional<unsigned int> configFlags = std::nullopt;
 
-public:
-    Game(std::string windowTitle, int windowWight, int windowHeight, int targetFps);
-    Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, unsigned int configFlags);
+        int frameCounter = 0;
+        
+        virtual void frameCode() = 0;
+        virtual void drawFrame() = 0;
 
-    int gameLoop();
+    public:
+        Game(std::string windowTitle, int windowWight, int windowHeight, int targetFps);
+        Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, std::optional<unsigned int> configFlags);
+
+        int gameLoop();
 };
 
 }

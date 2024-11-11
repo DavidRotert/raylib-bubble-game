@@ -3,8 +3,8 @@
 
 namespace bubblegame {
 
-BubbleGame::BubbleGame():
-rayengine2d::Game("Bubble Game", BUBBLEGAME_WINDOW_WIDTH, BUBBLEGAME_WINDOW_HEIGHT, BUBBLEGAME_FPS) {}
+BubbleGame::BubbleGame()
+: engine2d::Game("Bubble Game", BUBBLEGAME_WINDOW_WIDTH, BUBBLEGAME_WINDOW_HEIGHT, BUBBLEGAME_FPS) {}
 
 void BubbleGame::frameCode() {
     if (this->circlePositionY < (this->windowHeight - this->circleRadius - 1)) {

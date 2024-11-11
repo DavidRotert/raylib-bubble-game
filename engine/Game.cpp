@@ -1,30 +1,27 @@
 #include "Game.hpp"
 #include "raylib.h"
 
-namespace rayengine2d {
+namespace engine2d {
 
 Game::Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps) {
     this->windowTitle = windowTitle;
-    this->windowHeight = 400;
-    this->windowWidth = 800;
-    this->targetFps = 60;
-
-    InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
-    SetTargetFPS(this->targetFps);
+    this->windowHeight = windowHeight;
+    this->windowWidth = windowWidth;
+    this->targetFps = targetFps;
 }
 
-Game::Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, unsigned int configFlags) {
-    this->windowTitle = windowTitle;
-    this->windowHeight = 400;
-    this->windowWidth = 800;
-    this->targetFps = 60;
-
-    SetConfigFlags(configFlags);
-    InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
-    SetTargetFPS(this->targetFps);
+Game::Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, std::optional<unsigned int> configFlags)
+: Game(windowTitle, windowWidth, windowHeight, targetFps) {
+    this->configFlags = configFlags;
 }
 
 int Game::gameLoop() {
+    if (this->configFlags.has_value()) {
+        SetConfigFlags(this->configFlags.value());
+    }
+    InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
+    SetTargetFPS(this->targetFps);
+
     while (!WindowShouldClose()) {
         this->frameCode();
 
