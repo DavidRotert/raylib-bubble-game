@@ -18,12 +18,15 @@ class Game {
         
         virtual void frameCode() = 0;
         virtual void drawFrame() = 0;
-
+        virtual void init() = 0;
     public:
         Game(std::string windowTitle, int windowWight, int windowHeight, int targetFps);
         Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, std::optional<unsigned int> configFlags);
 
         int gameLoop();
+
+        int getWindowHeight();
+        int getWindowWidth();
 };
 
 }

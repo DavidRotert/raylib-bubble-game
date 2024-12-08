@@ -21,6 +21,7 @@ int Game::gameLoop() {
     }
     InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
     SetTargetFPS(this->targetFps);
+    this->init();
 
     while (!WindowShouldClose()) {
         this->frameCode();
@@ -34,6 +35,14 @@ int Game::gameLoop() {
 
     CloseWindow();
     return 0;
+}
+
+int Game::getWindowHeight() {
+    return this->windowHeight;
+}
+
+int Game::getWindowWidth() {
+    return this->windowWidth;
 }
 
 }
