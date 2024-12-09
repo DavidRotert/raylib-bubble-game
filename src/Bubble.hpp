@@ -10,9 +10,9 @@ namespace bubblegame {
 
 struct Bubble: public engine2d::Entity {
     int radius;
-    float speed = 1;
+    float speed;
 
-    Bubble(engine2d::Game* game, Vector2 pos, int radius);
+    Bubble(engine2d::Game* game, Vector2 position, int radius, float speed);
     ~Bubble();
 
     void drawEntity() override;

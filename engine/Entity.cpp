@@ -2,6 +2,6 @@
 
 namespace engine2d {
 
-Entity::Entity(Vector2 pos): pos(pos) {}
+Entity::Entity(Vector2 position): position(position) {}
 
 }

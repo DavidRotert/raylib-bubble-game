@@ -6,9 +6,9 @@
 namespace engine2d {
 
 struct Entity {
-    Vector2 pos;
+    Vector2 position;
 
-    Entity(Vector2 pos);
+    Entity(Vector2 position);
     
     virtual void drawEntity() = 0;
 };

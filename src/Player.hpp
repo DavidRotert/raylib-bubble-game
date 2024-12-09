@@ -10,7 +10,7 @@
 namespace bubblegame {
 
 struct Player: public engine2d::Entity {
-    Player(engine2d::Game& game, Vector2);
+    Player(const engine2d::Game& game, Vector2);
 
     void drawEntity() override;
 
@@ -18,7 +18,9 @@ struct Player: public engine2d::Entity {
     void moveDown();
 
     private:
-        engine2d::Game& game;
+        const engine2d::Game& game;
+
+        float calcMovementSpeed() const;
 };
 
 }

@@ -2,20 +2,24 @@
 
 namespace bubblegame {
 
-Player::Player(engine2d::Game& game, Vector2 pos): Entity(pos), game(game) {}
+Player::Player(const engine2d::Game& game, Vector2 position): Entity(position), game(game) {}
 
 void Player::drawEntity() {
-    DrawCircleV(this->pos, PLAYER_CIRCLE_RADIUS, MAROON);
+    DrawCircleV(this->position, PLAYER_CIRCLE_RADIUS, MAROON);
+}
+
+float Player::calcMovementSpeed() const {
+    return (60.0f / this->game.getTargetFps()) * 4;
 }
 
 void Player::moveUp() {
-    int newY = this->pos.y - KEYPRESS_MOVEMENT_SPEED;
-    this->pos.y = std::max(PLAYER_CIRCLE_RADIUS, newY);
+    int newY = this->position.y - this->calcMovementSpeed();
+    this->position.y = std::max(PLAYER_CIRCLE_RADIUS, newY);
 }
 
 void Player::moveDown() {
-    int newY = this->pos.y + KEYPRESS_MOVEMENT_SPEED;
-    this->pos.y = std::min(newY, this->game.getWindowHeight() - PLAYER_CIRCLE_RADIUS);
+    int newY = this->position.y + this->calcMovementSpeed();
+    this->position.y = std::min(newY, this->game.getWindowHeight() - PLAYER_CIRCLE_RADIUS);
 }
 
 }

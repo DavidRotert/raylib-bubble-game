@@ -25,8 +25,11 @@ class Game {
 
         int gameLoop();
 
-        int getWindowHeight();
-        int getWindowWidth();
+        int getWindowHeight() const;
+        int getWindowWidth() const;
+        int getTargetFps() const;
+        int getFrameCounter() const;
+        float calcMovementSpeed(float multiplier = 1.0f) const;
 };
 
 }

@@ -37,12 +37,24 @@ int Game::gameLoop() {
     return 0;
 }
 
-int Game::getWindowHeight() {
+int Game::getWindowHeight() const {
     return this->windowHeight;
 }
 
-int Game::getWindowWidth() {
+int Game::getWindowWidth() const {
     return this->windowWidth;
+}
+
+int Game::getTargetFps() const {
+    return this->targetFps;
+}
+
+int Game::getFrameCounter() const {
+    return this->frameCounter;
+}
+
+float Game::calcMovementSpeed(float multiplier) const {
+    return (60.0f / this->getTargetFps()) * multiplier;
 }
 
 }

@@ -5,8 +5,7 @@
 #include "BubbleGame.hpp"
 
 int main() {
-    bubblegame::BubbleGame game = bubblegame::BubbleGame();
-
+    bubblegame::BubbleGame game = bubblegame::BubbleGame(800, 400, 120);
     return game.gameLoop();
 }
 

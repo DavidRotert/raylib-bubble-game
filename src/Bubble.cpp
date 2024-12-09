@@ -5,7 +5,7 @@
 
 namespace bubblegame {
 
-Bubble::Bubble(engine2d::Game* game, Vector2 pos, int radius): Entity(pos), radius(radius), game(game) {}
+Bubble::Bubble(engine2d::Game* game, Vector2 position, int radius, float speed): Entity(position), radius(radius), speed(speed), game(game) {}
 
 #ifndef NDEBUG
 Bubble::~Bubble() {
@@ -16,11 +16,11 @@ Bubble::~Bubble() {}
 #endif
 
 void Bubble::drawEntity() {
-    DrawCircleLinesV(this->pos, this->radius, WHITE);
+    DrawCircleLinesV(this->position, this->radius, WHITE);
 }
 
 void Bubble::move() {
-    this->pos.x -= 1 * this->speed;
+    this->position.x -= this->game->calcMovementSpeed(1.2) * this->speed;
 }
 
 }
