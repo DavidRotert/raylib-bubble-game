@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <array>
+#include <optional>
 
 #include "raylib.h"
 
@@ -8,15 +9,15 @@
 
 namespace bubblegame {
 
-BubbleGame::BubbleGame(int windowWidth, int windowHeight, int targetFps)
-: engine2d::Game("Bubble Game", windowWidth, windowHeight, targetFps, FLAG_MSAA_4X_HINT),
+BubbleGame::BubbleGame(int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags)
+: engine2d::Game("Bubble Game", windowWidth, windowHeight, targetFps, configFlags),
 player(Player(*this, Vector2{PLAYER_CIRCLE_RADIUS + 30, (float) windowHeight / 2})) {
-    this->bubbles.reserve(20);
+    this->bubbles.reserve(25);
 }
 
 void BubbleGame::init() {
     SetMousePosition(this->getWindowWidth() / 2, this->getWindowHeight() / 2);
-    DisableCursor();
+    //DisableCursor();
     SetWindowFocused();
 }
 
@@ -67,6 +68,8 @@ void BubbleGame::drawFrame() {
     }
 
     this->player.drawEntity();
+
+    DrawFPS(10, 10);
 }
 
 }

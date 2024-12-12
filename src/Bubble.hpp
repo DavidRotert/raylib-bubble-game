@@ -13,7 +13,7 @@ struct Bubble: public engine2d::Entity {
     float speed;
 
     Bubble(engine2d::Game* game, Vector2 position, int radius, float speed);
-    ~Bubble();
+    virtual ~Bubble();
 
     void drawEntity() override;
     void move();

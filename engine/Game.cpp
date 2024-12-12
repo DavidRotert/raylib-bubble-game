@@ -3,14 +3,14 @@
 
 namespace engine2d {
 
-Game::Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps) {
+Game::Game(std::string windowTitle, int windowWidth, int windowHeight, std::optional<int> targetFps) {
     this->windowTitle = windowTitle;
     this->windowHeight = windowHeight;
     this->windowWidth = windowWidth;
-    this->targetFps = targetFps;
+    this->targetFps = targetFps.value_or(0);
 }
 
-Game::Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, std::optional<unsigned int> configFlags)
+Game::Game(std::string windowTitle, int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags)
 : Game(windowTitle, windowWidth, windowHeight, targetFps) {
     this->configFlags = configFlags;
 }
@@ -20,8 +20,15 @@ int Game::gameLoop() {
         SetConfigFlags(this->configFlags.value());
     }
     InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
-    SetTargetFPS(this->targetFps);
+    if (this->targetFps <= 0) {
+        SetTargetFPS(this->targetFps);
+    }
     this->init();
+
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawFPS(10, 10);
+    EndDrawing();
 
     while (!WindowShouldClose()) {
         this->frameCode();
@@ -30,7 +37,9 @@ int Game::gameLoop() {
         this->drawFrame();
         EndDrawing();
 
+        this->targetFps = GetFPS();
         this->frameCounter = (this->frameCounter + 1) % this->targetFps;
+        this->frameTime = GetFrameTime();
     }
 
     CloseWindow();
@@ -54,7 +63,7 @@ int Game::getFrameCounter() const {
 }
 
 float Game::calcMovementSpeed(float multiplier) const {
-    return (60.0f / this->getTargetFps()) * multiplier;
+    return (this->frameTime <= 0 ? 1: this->frameTime) * multiplier;
 }
 
 }

@@ -2,14 +2,11 @@
 #define BUBBLEGAME_HPP
 
 #include <vector>
+#include <optional>
 
 #include "Game.hpp"
 #include "Player.hpp"
 #include "Bubble.hpp"
-
-#define BUBBLEGAME_WINDOW_WIDTH 800
-#define BUBBLEGAME_WINDOW_HEIGHT 400
-#define BUBBLEGAME_FPS 60
 
 namespace bubblegame {
 
@@ -25,7 +22,7 @@ class BubbleGame: public engine2d::Game {
         void frameCode() override;
         void drawFrame() override;
     public:
-        BubbleGame(int windowWidth, int windowHeight, int targetFps);
+        BubbleGame(int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags);
 };
 
 }

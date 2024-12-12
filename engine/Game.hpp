@@ -12,6 +12,7 @@ class Game {
         int windowWidth;
         int windowHeight;
         int targetFps;
+        int frameTime;
         std::optional<unsigned int> configFlags = std::nullopt;
 
         int frameCounter = 0;
@@ -20,8 +21,8 @@ class Game {
         virtual void drawFrame() = 0;
         virtual void init() = 0;
     public:
-        Game(std::string windowTitle, int windowWight, int windowHeight, int targetFps);
-        Game(std::string windowTitle, int windowWidth, int windowHeight, int targetFps, std::optional<unsigned int> configFlags);
+        Game(std::string windowTitle, int windowWight, int windowHeight, std::optional<int> targetFps);
+        Game(std::string windowTitle, int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags);
 
         int gameLoop();
 

@@ -9,6 +9,7 @@ struct Entity {
     Vector2 position;
 
     Entity(Vector2 position);
+    virtual ~Entity() {};
     
     virtual void drawEntity() = 0;
 };
