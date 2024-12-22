@@ -8,17 +8,13 @@ void Player::drawEntity() {
     DrawCircleV(this->position, PLAYER_CIRCLE_RADIUS, MAROON);
 }
 
-float Player::calcMovementSpeed() const {
-    return (60.0f / this->game.getTargetFps()) * 4;
-}
-
 void Player::moveUp() {
-    int newY = this->position.y - this->calcMovementSpeed();
+    int newY = this->position.y - this->game.calcMovementSpeed(4);
     this->position.y = std::max(PLAYER_CIRCLE_RADIUS, newY);
 }
 
 void Player::moveDown() {
-    int newY = this->position.y + this->calcMovementSpeed();
+    int newY = this->position.y + this->game.calcMovementSpeed(4);
     this->position.y = std::min(newY, this->game.getWindowHeight() - PLAYER_CIRCLE_RADIUS);
 }
 

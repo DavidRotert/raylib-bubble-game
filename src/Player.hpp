@@ -19,8 +19,6 @@ struct Player: public engine2d::Entity {
 
     private:
         const engine2d::Game& game;
-
-        float calcMovementSpeed() const;
 };
 
 }

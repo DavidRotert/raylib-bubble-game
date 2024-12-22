@@ -20,7 +20,7 @@ void Bubble::drawEntity() {
 }
 
 void Bubble::move() {
-    this->position.x -= this->game->calcMovementSpeed(1.2) * this->speed;
+    this->position.x -= this->game->calcMovementSpeed(this->speed);
 }
 
 }

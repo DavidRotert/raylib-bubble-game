@@ -15,6 +15,8 @@ class BubbleGame: public engine2d::Game {
         Player player;
         std::vector<Bubble> bubbles = {};
         int keyPressed = 0;
+        int points = 0;
+        time_t endTime = 0;
 
         void init() override;
     protected:
