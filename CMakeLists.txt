@@ -39,3 +39,8 @@ target_sources(${PROJECT_NAME} PRIVATE
 	engine/Entity.cpp
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+
+set(RESOURCE_FILES
+	resources/submarine.png
+)
+file(COPY ${RESOURCE_FILES} DESTINATION "resources/")

@@ -9,17 +9,17 @@
 namespace bubblegame {
 
 struct Bubble: public engine2d::Entity {
-    int radius;
-    float speed;
-
-    Bubble(engine2d::Game* game, Vector2 position, int radius, float speed);
+    Bubble(const engine2d::Game* game, Vector2 position, int radius, float speed): Entity(position), radius(radius), speed(speed), game(game) {};
     virtual ~Bubble();
 
     void drawEntity() override;
     void move();
 
+    int radius;
+    float speed;
+
     private:
-        engine2d::Game* game;
+        const engine2d::Game* game;
 };
 
 }

@@ -42,6 +42,8 @@ int Game::gameLoop() {
         this->frameTime = GetFrameTime();
     }
 
+    this->cleanUp();
+
     CloseWindow();
     return 0;
 }

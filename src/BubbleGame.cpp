@@ -11,17 +11,13 @@
 
 namespace bubblegame {
 
-BubbleGame::BubbleGame(int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags)
-: engine2d::Game("Bubble Game", windowWidth, windowHeight, targetFps, configFlags),
-player(Player(*this, Vector2{PLAYER_CIRCLE_RADIUS + 30, (float) windowHeight / 2})) {
-    this->bubbles.reserve(25);
-}
-
 void BubbleGame::init() {
     SetMousePosition(this->getWindowWidth() / 2, this->getWindowHeight() / 2);
     SetWindowFocused();
 
     this->endTime = std::time(nullptr) + 120;
+    this->player = Player(this, Vector2{(float) Player::playerCircleRadius + 30, (float) windowHeight / 2});
+    this->bubbles.reserve(25);
 }
 
 void BubbleGame::frameCode() {
@@ -107,6 +103,10 @@ void BubbleGame::drawFrame() {
     std::string timeLeftText = std::format("Time left: {}", timeLeft);
     const char* timeLeftTextChar_p = timeLeftText.c_str();
     DrawText(timeLeftTextChar_p, this->windowWidth - MeasureText(timeLeftTextChar_p, fontSize) - 10, 10, fontSize, WHITE);
+}
+
+void BubbleGame::cleanUp() {
+    this->player.unloadTexture();
 }
 
 }

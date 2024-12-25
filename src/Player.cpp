@@ -1,21 +1,22 @@
 #include "Player.hpp"
+#include "raymath.h"
 
 namespace bubblegame {
 
-Player::Player(const engine2d::Game& game, Vector2 position): Entity(position), game(game) {}
+const int Player::playerCircleRadius = PLAYER_CIRCLE_RADIUS;
 
 void Player::drawEntity() {
-    DrawCircleV(this->position, PLAYER_CIRCLE_RADIUS, MAROON);
+    DrawTextureEx(this->texture, Vector2Subtract(this->position, Vector2{Player::playerCircleRadius, Player::playerCircleRadius}), 0, Player::playerCircleRadius * 2 / this->texture.height, WHITE);
 }
 
 void Player::moveUp() {
-    int newY = this->position.y - this->game.calcMovementSpeed(4);
-    this->position.y = std::max(PLAYER_CIRCLE_RADIUS, newY);
+    const int newY = this->position.y - this->game->calcMovementSpeed(4);
+    this->position.y = std::max(Player::playerCircleRadius, newY);
 }
 
 void Player::moveDown() {
-    int newY = this->position.y + this->game.calcMovementSpeed(4);
-    this->position.y = std::min(newY, this->game.getWindowHeight() - PLAYER_CIRCLE_RADIUS);
+    const int newY = this->position.y + this->game->calcMovementSpeed(4);
+    this->position.y = std::min(newY, this->game->getWindowHeight() - Player::playerCircleRadius);
 }
 
 }

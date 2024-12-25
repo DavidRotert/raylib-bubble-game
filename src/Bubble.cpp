@@ -5,8 +5,6 @@
 
 namespace bubblegame {
 
-Bubble::Bubble(engine2d::Game* game, Vector2 position, int radius, float speed): Entity(position), radius(radius), speed(speed), game(game) {}
-
 #ifndef NDEBUG
 Bubble::~Bubble() {
     std::cout << "Deleted bubble " << this << std::endl;
