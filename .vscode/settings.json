@@ -51,6 +51,11 @@
         "charconv": "cpp",
         "ctime": "cpp",
         "span": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_set": "cpp",
+        "ranges": "cpp"
     }
 }

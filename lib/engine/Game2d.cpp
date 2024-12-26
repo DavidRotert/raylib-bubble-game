@@ -1,21 +1,9 @@
-#include "Game.hpp"
+#include "Game2d.hpp"
 #include "raylib.h"
 
-namespace engine2d {
+namespace engine {
 
-Game::Game(std::string windowTitle, int windowWidth, int windowHeight, std::optional<int> targetFps) {
-    this->windowTitle = windowTitle;
-    this->windowHeight = windowHeight;
-    this->windowWidth = windowWidth;
-    this->targetFps = targetFps.value_or(0);
-}
-
-Game::Game(std::string windowTitle, int windowWidth, int windowHeight, std::optional<int> targetFps, std::optional<unsigned int> configFlags)
-: Game(windowTitle, windowWidth, windowHeight, targetFps) {
-    this->configFlags = configFlags;
-}
-
-int Game::gameLoop() {
+int Game2d::gameLoop() {
     if (this->configFlags.has_value()) {
         SetConfigFlags(this->configFlags.value());
     }
@@ -48,23 +36,23 @@ int Game::gameLoop() {
     return 0;
 }
 
-int Game::getWindowHeight() const {
+int Game2d::getWindowHeight() const {
     return this->windowHeight;
 }
 
-int Game::getWindowWidth() const {
+int Game2d::getWindowWidth() const {
     return this->windowWidth;
 }
 
-int Game::getTargetFps() const {
+int Game2d::getTargetFps() const {
     return this->targetFps;
 }
 
-int Game::getFrameCounter() const {
+int Game2d::getFrameCounter() const {
     return this->frameCounter;
 }
 
-float Game::calcMovementSpeed(float multiplier) const {
+float Game2d::calcMovementSpeed(float multiplier) const {
     return (this->frameTime <= 0 ? 1: this->frameTime) * multiplier;
 }
 

@@ -26,17 +26,20 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
 target_include_directories(${PROJECT_NAME} PRIVATE
 	src
-	engine
+	lib
 )
 target_sources(${PROJECT_NAME} PRIVATE
-	src/main.cpp
-	src/BubbleGame.cpp
-	src/Player.cpp
-	src/Bubble.cpp
+	
 )
+#target_sources(${PROJECT_NAME} PRIVATE
+#	src/main.cpp
+#	src/BubbleGame.cpp
+#	src/Player.cpp
+#	src/Bubble.cpp
+#)
 target_sources(${PROJECT_NAME} PRIVATE
-	engine/Game.cpp
-	engine/Entity.cpp
+	lib/engine/Game.cpp
+	lib/engine/Entity.cpp
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 
