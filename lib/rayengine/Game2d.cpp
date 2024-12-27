@@ -1,21 +1,19 @@
-#include "Game2d.hpp"
+#include "./Game2d.hpp"
 #include "raylib.h"
 
-namespace engine {
+namespace rayengine {
 
 int Game2d::gameLoop() {
     if (this->configFlags.has_value()) {
         SetConfigFlags(this->configFlags.value());
     }
     InitWindow(this->windowWidth, this->windowHeight, windowTitle.c_str());
-    if (this->targetFps <= 0) {
+    if (this->targetFps >= 0) {
         SetTargetFPS(this->targetFps);
     }
     this->init();
 
     BeginDrawing();
-    ClearBackground(BLACK);
-    DrawFPS(10, 10);
     EndDrawing();
 
     while (!WindowShouldClose()) {

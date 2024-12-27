@@ -29,17 +29,16 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	lib
 )
 target_sources(${PROJECT_NAME} PRIVATE
-	
-)
-#target_sources(${PROJECT_NAME} PRIVATE
-#	src/main.cpp
-#	src/BubbleGame.cpp
+	src/main.cpp
+	src/BubbleGame.cpp
+	src/player.cpp
 #	src/Player.cpp
 #	src/Bubble.cpp
-#)
+)
 target_sources(${PROJECT_NAME} PRIVATE
-	lib/engine/Game.cpp
-	lib/engine/Entity.cpp
+	lib/rayengine/Game2d.cpp
+	lib/rayengine/TextureManager.cpp
+	lib/rayengine/components/2d/CollisionCircle.cpp
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 
