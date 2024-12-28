@@ -1,7 +1,7 @@
 #ifndef RAYENGINE_TEXTUREMANAGER_HPP
 #define RAYENGINE_TEXTUREMANAGER_HPP
 
-#include <map>
+#include <unordered_map>
 #include "raylib.h"
 
 namespace rayengine {
@@ -13,7 +13,7 @@ struct TextureManager {
     void unloadAll();
 
     private:
-        std::map<const char*, Texture2D> textures = {};
+        std::unordered_map<const char*, Texture2D> textures = {};
 };
 
 }

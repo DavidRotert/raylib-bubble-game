@@ -6,7 +6,7 @@
 namespace rayengine {
 
 template<typename Base, typename T> inline bool instanceof(const T&) {
-    return std::is_base_of<Base, T>::value;
+    return std::is_base_of_v<Base, T>;
 }
 
 }

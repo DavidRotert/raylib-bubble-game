@@ -3,8 +3,6 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#include "rayengine/components/2d/Moving.hpp"
-
 #include <iostream>
 
 namespace bubblegame {
@@ -15,7 +13,6 @@ entt::entity createPlayerInRegistry(entt::registry& registry, int windowHeight) 
     registry.emplace<Player>(entityId);
     registry.emplace<rayengine_2d::Position>(entityId, positionVector);
     registry.emplace<rayengine_2d::CollisionCircle>(entityId, positionVector, PLAYER_COLLISION_RADIUS);
-    registry.emplace<rayengine_2d::Moving<rayengine_2d::Position&, rayengine_2d::CollisionCircle&>>(entityId, registry.get<rayengine_2d::Position>(entityId), registry.get<rayengine_2d::CollisionCircle>(entityId));
 
     return entityId;
 }

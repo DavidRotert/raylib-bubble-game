@@ -1,14 +1,13 @@
 #include "./BubbleGame.hpp"
 
 #include "raymath.h"
-#include "./player.hpp"
 
 namespace bubblegame {
 
 void BubbleGame::init() {
-    this->textureManager.load("submarine", "resources/submarine.png");
+    this->textureManager.load("player", "resources/submarine.png");
 
-    this->playerEntityId = createPlayerInRegistry(this->registry, this->windowHeight);
+    this->player = Player::create(this->windowHeight);
 }
 
 void BubbleGame::frameCode() {
@@ -20,14 +19,15 @@ void BubbleGame::frameCode() {
         this->keyPressed = key;
     }
 
-    if (this->keyPressed != 0) {
-        auto [playerPosition, playerCollision] = this->registry.get<rayengine_2d::Position, rayengine_2d::CollisionCircle>(this->playerEntityId);
-
-        if (this->keyPressed == KEY_W || this->keyPressed == KEY_UP) {
-            movePlayerUp(playerPosition, playerCollision, this->frameTime);
-        } else if (this->keyPressed == KEY_S || this->keyPressed == KEY_DOWN) {
-            movePlayerDown(playerPosition, playerCollision, this->getWindowHeight(), this->frameTime);
-        }
+    switch (this->keyPressed) {
+        case KEY_W:
+        case KEY_UP:
+            this->player.moveUp(this->deltaTime);
+            break;
+        case KEY_S:
+        case KEY_DOWN:
+            this->player.moveDown(this->windowHeight, this->deltaTime);
+            break;
     }
 
     /*if (this->frameCounter == 0) {
@@ -47,12 +47,11 @@ void BubbleGame::drawFrame() {
 
     DrawCircleV(Vector2{90, 90}, 40, MAROON);
 
-    rayengine_2d::Position playerPosition = this->registry.get<rayengine_2d::Position>(this->playerEntityId);
-    renderPlayer(playerPosition, this->textureManager);
+    this->player.render(this->textureManager);
 }
 
 void BubbleGame::cleanUp() {
-    this->textureManager.unloadAll();
+
 }
 
 }

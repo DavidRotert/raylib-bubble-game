@@ -31,7 +31,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_sources(${PROJECT_NAME} PRIVATE
 	src/main.cpp
 	src/BubbleGame.cpp
-	src/player.cpp
+	src/Player.cpp
 	src/bubble.cpp
 )
 target_sources(${PROJECT_NAME} PRIVATE

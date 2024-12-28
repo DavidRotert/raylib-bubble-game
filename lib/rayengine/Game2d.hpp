@@ -38,7 +38,7 @@ class Game2d {
         int windowWidth;
         int windowHeight;
         int targetFps;
-        float frameTime;
+        float deltaTime;
         int frameCounter = 0;
 };
 

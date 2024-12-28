@@ -3,11 +3,6 @@
 
 namespace rayengine_2d {
 
-enum CollisionType : unsigned char {
-    RECTANGLE,
-    CIRCLE
-};
-
 struct Collision {
     virtual bool checkCollision(Collision& other) = 0;
 };

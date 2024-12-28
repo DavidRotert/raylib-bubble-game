@@ -25,10 +25,11 @@ int Game2d::gameLoop() {
 
         this->targetFps = GetFPS();
         this->frameCounter = (this->frameCounter + 1) % this->targetFps;
-        this->frameTime = GetFrameTime();
+        this->deltaTime = GetFrameTime();
     }
 
     this->cleanUp();
+    this->textureManager.unloadAll();
 
     CloseWindow();
     return 0;
@@ -51,7 +52,7 @@ int Game2d::getFrameCounter() const {
 }
 
 float Game2d::calcMovementSpeed(float multiplier) const {
-    return (this->frameTime <= 0 ? 1: this->frameTime) * multiplier;
+    return (this->deltaTime <= 0 ? 1: this->deltaTime) * multiplier;
 }
 
 }

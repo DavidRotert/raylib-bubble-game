@@ -2,7 +2,7 @@
 #define BUBBLEGAME_GAME
 
 #include "rayengine/Game2d.hpp"
-#include <map>
+#include "./Player.hpp"
 
 namespace bubblegame {
 
@@ -16,7 +16,7 @@ class BubbleGame: public rayengine::Game2d {
         void drawFrame() override;
         virtual void cleanUp() override;
 
-        entt::entity playerEntityId;
+        Player player;
         int keyPressed = 0;
 };
 
