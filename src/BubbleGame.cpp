@@ -6,7 +6,7 @@
 namespace bubblegame {
 
 void BubbleGame::init() {
-    this->textures.load("submarine", "resources/submarine.png");
+    this->textureManager.load("submarine", "resources/submarine.png");
 
     this->playerEntityId = createPlayerInRegistry(this->registry, this->windowHeight);
 }
@@ -24,11 +24,18 @@ void BubbleGame::frameCode() {
         auto [playerPosition, playerCollision] = this->registry.get<rayengine_2d::Position, rayengine_2d::CollisionCircle>(this->playerEntityId);
 
         if (this->keyPressed == KEY_W || this->keyPressed == KEY_UP) {
-            movePlayerUp(playerPosition, playerCollision);
+            movePlayerUp(playerPosition, playerCollision, this->frameTime);
         } else if (this->keyPressed == KEY_S || this->keyPressed == KEY_DOWN) {
-            movePlayerDown(playerPosition, playerCollision, this->getWindowHeight());
+            movePlayerDown(playerPosition, playerCollision, this->getWindowHeight(), this->frameTime);
         }
     }
+
+    /*if (this->frameCounter == 0) {
+        int radius = GetRandomValue(5, 40);
+        int y = GetRandomValue(radius, this->windowHeight - radius);
+        float speed = 1 + (GetRandomValue(0, 10) * 0.1);
+        this->bubbles.emplace_back(this, Vector2{(float) this->windowWidth + radius, (float) y}, radius, speed);
+    }*/
 }
 
 void BubbleGame::drawFrame() {
@@ -40,14 +47,12 @@ void BubbleGame::drawFrame() {
 
     DrawCircleV(Vector2{90, 90}, 40, MAROON);
 
-    auto [playerPosition, playerCollision] = this->registry.get<rayengine_2d::Position, rayengine_2d::CollisionCircle>(this->playerEntityId);
-
-    Texture2D playerTexture = this->textures.get("submarine");
-    DrawTextureEx(playerTexture, Vector2Subtract(playerPosition.position, Vector2{PLAYER_COLLISION_RADIUS, PLAYER_COLLISION_RADIUS}), 0, (PLAYER_COLLISION_RADIUS * 2) / playerTexture.height, WHITE);
+    rayengine_2d::Position playerPosition = this->registry.get<rayengine_2d::Position>(this->playerEntityId);
+    renderPlayer(playerPosition, this->textureManager);
 }
 
 void BubbleGame::cleanUp() {
-    this->textures.unloadAll();
+    this->textureManager.unloadAll();
 }
 
 }

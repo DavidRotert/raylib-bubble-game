@@ -8,7 +8,7 @@ namespace bubblegame {
 
 class BubbleGame: public rayengine::Game2d {
     public:
-        BubbleGame(): rayengine::Game2d("Bubble Game", 800, 400, 500, FLAG_MSAA_4X_HINT) {};
+        BubbleGame(): rayengine::Game2d("Bubble Game", 800, 400, std::nullopt, FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT) {};
 
     protected:
         virtual void init() override;

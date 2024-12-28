@@ -32,7 +32,7 @@ class Game2d {
         virtual void cleanUp() = 0;
 
         entt::registry registry = {};
-        TextureManager textures = {};
+        TextureManager textureManager = {};
         std::string windowTitle;
         std::optional<unsigned int> configFlags;
         int windowWidth;
