@@ -34,7 +34,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	src/main.cpp
 	src/BubbleGame.cpp
 	src/Player.cpp
-	src/bubble.cpp
+#	src/bubble.cpp
 )
 target_sources(${PROJECT_NAME} PRIVATE
 	lib/rayengine/Game2d.cpp

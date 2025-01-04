@@ -27,7 +27,7 @@ struct Player {
     };
     void moveUp(float deltaTime);
     void moveDown(int windowHeight, float deltaTime);
-    bool checkCollision(rayengine_2d::Collision& other) { return this->collisionComponent.checkCollision(other); };
+    bool checkCollision(rayengine_2d::AbstractCollision& other) { return this->collisionComponent.checkCollision(other); };
     void render(rayengine::TextureManager& textureManager);
 
     private:

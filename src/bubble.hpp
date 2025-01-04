@@ -8,8 +8,6 @@
 
 namespace bubblegame {
 
-struct Bubble {};
-
 entt::entity spawnBubble(entt::registry& registry, int windowHeight, int windowWidth);
 
 }

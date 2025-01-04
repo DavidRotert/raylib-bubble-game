@@ -2,20 +2,24 @@
 #define RAYENGINE_COMPONENTS_2D_POSITION_HPP
 
 #include "raylib.h"
-#include "./Movable.hpp"
+#include "./MovableComponent.hpp"
 
 namespace rayengine_2d {
 
 typedef unsigned int z_index;
 
-struct Position: public Movable {
+struct Position: public MovableComponent {
     Position(Vector2 position): position(position) {};
     ~Position() {};
 
     Vector2 position;
 
-    virtual void move(Vector2 add) override {
-        Vector2Add(this->position, add);
+    void moveTo(Vector2 position) override {
+        this->position = position;
+    }
+
+    void move(Vector2 by) override {
+        this->position = Vector2Add(this->position, by);
     }
 };
 
